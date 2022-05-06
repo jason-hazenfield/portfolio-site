@@ -1,0 +1,40 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center my-3">
+  <div class="col-5">
+    <img src="{% static 'portfolio/profile_pic.jpg' %}" class="img-fluid rounded-circle">
+  </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-9 text-center">
+    <h2 id="hometext" class="font-weight-bold">Jason Hazenfield</h2>
+    <h2 class="font-weight-bolder">Web Developer</h2>
+  </div>
+</div>
+<h3 class="row mt-5 col-md font-weight-bolder"><span style="color:#28a745;">Projects :</span></h3>
+
+<hr>
+<div class="row">
+  {% for project in projects %}
+  <div class="col-lg-4 col-md-6">
+
+    {% if project.url %}
+    <a href="{{ project.url }}">
+      <img src="{{ project.image.url }}" class="img-fluid mb-2">
+    </a><br>
+    {% else %}
+    <img src="{{ project.image.url }}" class="img-fluid mb-2"><br>
+    {% endif %}
+    <br><h4 class="font-weight-bolder font-italic">{{ project.title }}</h4>
+    <p>{{ project.description }}</p>
+
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
